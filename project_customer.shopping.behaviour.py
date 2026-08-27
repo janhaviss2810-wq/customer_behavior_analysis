@@ -78,30 +78,4 @@ print(df.columns)
 
 
 
-#connecting idle with mysql
 
-from urllib.parse import quote_plus
-from sqlalchemy import create_engine
-
-# MySQL Connection
-username = "root"
-password = quote_plus("Janhavi@123")   # Replace with your actual MySQL password
-host = "localhost"
-port = "3306"
-database = "customer_behavior"
-
-engine = create_engine(
-    f"mysql+pymysql://{username}:{password}@{host}:{port}/{database}"
-)
-
-# Upload DataFrame to MySQL
-table_name = "customer"
-
-df.to_sql(
-    table_name,
-    engine,
-    if_exists="replace",
-    index=False
-)
-
-print("Data successfully loaded into MySQL!")
